@@ -14,7 +14,7 @@
             box-sizing: border-box;
         }
 
-        root {
+        :root {
             --bg-primary: #0b0b0f;
             --bg-secondary: #14141a;
             --bg-card: #1c1c26;
