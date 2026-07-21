@@ -1,5 +1,3 @@
-# abdoulaat.github.io
-Digital marketing portfolio
 <!DOCTYPE html>
 <html lang="fr">
 <head>
