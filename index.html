@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio · Brand & Digital Marketing</title>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b0b0f;
+            --bg-secondary: #14141a;
+            --bg-card: #1c1c26;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --accent: #ff6b35;
+            --accent-hover: #e85a2a;
+            --border-color: #2a2a3a;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            --radius: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* ===== BOUTONS ===== */
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 53, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ===== TYPOGRAPHIE ===== */
+        .section-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 650px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(11, 11, 15, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* ===== SECTION 1 : HERO (Présentation) ===== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 40px 0 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 500px;
+        }
+        .hero-content .badge {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 span {
+            color: var(--accent);
+        }
+        .hero-content p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .hero-stats div {
+            text-align: left;
+        }
+        .hero-stats .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .hero-stats .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .hero-image {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-image .avatar-placeholder {
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(145deg, #2a2a3a, #1a1a26);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--accent);
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.15);
+        }
+
+        /* ===== SECTION 2 : ÉTUDES DE CAS ===== */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .case-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s;
+        }
+        .case-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+        .case-card .case-tag {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .case-card h3 {
+            font-size: 1.6rem;
+            margin: 10px 0 15px 0;
+        }
+        .case-card .case-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .case-card .case-details strong {
+            color: #fff;
+        }
+        .case-card .result {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 12px 18px;
+            border-radius: 10px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* ===== SECTION 3 : À PROPOS ===== */
+        .about-wrapper {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 2 1 400px;
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .about-text .signature {
+            font-style: italic;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .about-stats-box {
+            flex: 1 1 200px;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .about-stats-box .stat-item {
+            margin: 20px 0;
+        }
+        .about-stats-box .stat-item .num {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .about-stats-box .stat-item .lbl {
+            color: var(--text-secondary);
+        }
+
+        /* ===== SECTION 4 : COMPÉTENCES ===== */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .skill-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: #fff;
+            background: rgba(255, 107, 53, 0.08);
+        }
+        .skill-tag i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* ===== SECTION 5 : TÉMOIGNAGES ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .testimonial-card .quote-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .testimonial-card .client {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .testimonial-card .client .name {
+            font-weight: 700;
+            color: #fff;
+        }
+        .testimonial-card .client .role {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .testimonial-card .client .avatar-sm {
+            width: 50px;
+            height: 50px;
+            background: var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* ===== SECTION 6 : CTA / CONTACT ===== */
+        .cta-box {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .cta-box h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .cta-box h2 span {
+            color: var(--accent);
+        }
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .social-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.6rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: var(--bg-secondary);
+                padding: 20px;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 200px;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+                gap: 15px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-image .avatar-placeholder {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .cta-box h2 {
+                font-size: 2.2rem;
+            }
+            .cta-box {
+                padding: 40px 20px;
+            }
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0 10px;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <div class="logo"><span>.</span>portfolio</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#work">Projets</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#testimonials">Avis</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ===== SECTION 1 : PRÉSENTATION ===== -->
+        <section id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="badge"><i class="fas fa-rocket"></i> Brand & Digital Strategist</span>
+                    <h1>Je donne vie à <br><span>vos marques</span> digitales</h1>
+                    <p>Spécialiste en branding, social media et marketing digital. J'accompagne les startups et les entreprises à fortifier leur identité et à générer des résultats concrets.</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="#work" class="btn">Voir mes projets</a>
+                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div>
+                            <div class="number">4+</div>
+                            <div class="label">Années d'expérience</div>
+                        </div>
+                        <div>
+                            <div class="number">50+</div>
+                            <div class="label">Projets livrés</div>
+                        </div>
+                        <div>
+                            <div class="number">12+</div>
+                            <div class="label">Clients satisfaits</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 2 : ÉTUDES DE CAS ===== -->
+        <section id="work">
+            <span class="section-tag">Études de cas</span>
+            <h2 class="section-title">Projets <span>récents</span></h2>
+            <p class="section-desc">Contexte, défis, solutions et résultats concrets pour mes clients.</p>
+
+            <div class="cases-grid">
+
+                <!-- Cas 1 -->
+                <div class="case-card">
+                    <div class="case-tag">Branding & Social</div>
+                    <h3>GreenLeaf Cosmetics</h3>
+                    <div class="case-details">
+                        <p><strong>Contexte :</strong> Marque de cosmétiques bio en lancement.</p>
+                        <p><strong>Défi :</strong> Se différencier sur un marché saturé et fédérer une communauté engagée.</p>
+                        <p><strong>Solution :</strong> Création d'une identité visuelle organique + stratégie UGC sur Instagram/TikTok.</p>
+                    </div>
+                    <div class="result">📈 Résultat : +240% d'engagement & 15k abonnés en 3 mois</div>
+                </div>
+
+                <!-- Cas 2 -->
+                <div class="case-card">
+                    <div class="case-tag">Digital Marketing</div>
+                    <h3>WiseFit App</h3>
+                    <div class="case-details">
+                        <p><strong>Contexte :</strong> Application de coaching sportif en phase de scaling.</p>
+                        <p><strong>Défi :</strong> Baisser le coût d'acquisition client (CAC) et augmenter les conversions.</p>
+                        <p><strong>Solution :</strong> Campagnes Ads ciblées + refonte du funnel de vente.</p>
+                    </div>
+                    <div class="result">📈 Résultat : CAC réduit de 35% & ROI × 3.2</div>
+                </div>
+
+                <!-- Cas 3 -->
+                <div class="case-card">
+                    <div class="case-tag">Community Management</div>
+                    <h3>Urban Eats</h3>
+                    <div class="case-details">
+                        <p><strong>Contexte :</strong> Réseau de food trucks à forte identité locale.</p>
+                        <p><strong>Défi :</strong> Créer un buzz autour des nouvelles ouvertures et fidéliser.</p>
+                        <p><strong>Solution :</strong> Stratégie de contenu storytelling + jeux concours et influenceurs locaux.</p>
+                    </div>
+                    <div class="result">📈 Résultat : +180% de mentions spontanées & files d'attente record</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SECTION 3 : À PROPOS ===== -->
+        <section id="about">
+            <span class="section-tag">Qui suis-je</span>
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h2 class="section-title">Passionné par <span>la stratégie</span> et la créativité</h2>
+                    <p>
+                        Après 4 ans passés dans des agences digitales, j'ai décidé de voler de mes propres ailes. 
+                        Mon approche allie <strong>data</strong> et <strong>storytelling</strong> : chaque marque a une histoire unique, 
+                        et mon métier est de la faire résonner auprès des bonnes personnes.
+                    </p>
+                    <p>
+                        J'accompagne aussi bien des startups ambitieuses que des entreprises établies qui souhaitent 
+                        rajeunir leur image et maximiser leur impact sur les réseaux sociaux.
+                    </p>
+                    <div class="signature">— Créer des marques qui connectent, c'est ma mission.</div>
+                </div>
+                <div class="about-stats-box">
+                    <div class="stat-item">
+                        <div class="num">100%</div>
+                        <div class="lbl">Satisfaction client</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">50+</div>
+                        <div class="lbl">Projets collaboratifs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">15+</div>
+                        <div class="lbl">Marques accompagnées</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 4 : COMPÉTENCES ===== -->
+        <section id="skills">
+            <span class="section-tag">Expertises</span>
+            <h2 class="section-title">Mes <span>compétences</span> clés</h2>
+            <p class="section-desc">Des domaines maîtrisés pour répondre à tous vos enjeux de marque.</p>
+
+            <div class="skills-container">
+                <span class="skill-tag"><i class="fas fa-pen-fancy"></i> Branding & Identité</span>
+                <span class="skill-tag"><i class="fas fa-hashtag"></i> Social Media Stratégie</span>
+                <span class="skill-tag"><i class="fas fa-chart-line"></i> Digital Marketing (Ads)</span>
+                <span class="skill-tag"><i class="fas fa-users"></i> Community Management</span>
+                <span class="skill-tag"><i class="fas fa-paint-brush"></i> Direction Artistique</span>
+                <span class="skill-tag"><i class="fas fa-search"></i> SEO / Référencement</span>
+                <span class="skill-tag"><i class="fas fa-mail-bulk"></i> Email Marketing</span>
+                <span class="skill-tag"><i class="fas fa-edit"></i> Copywriting & Storytelling</span>
+                <span class="skill-tag"><i class="fas fa-mobile-alt"></i> UX/UI (Notion, Figma)</span>
+                <span class="skill-tag"><i class="fas fa-camera"></i> Direction de contenus photo/vidéo</span>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 5 : TÉMOIGNAGES ===== -->
+        <section id="testimonials">
+            <span class="section-tag">Preuves sociales</span>
+            <h2 class="section-title">Ils me <span>font confiance</span></h2>
+            <p class="section-desc">Des retours concrets de mes clients et partenaires.</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p>"Un vrai coup de boost pour notre marque ! En 6 mois, notre notoriété a explosé grâce à une stratégie social media ultra pertinente."</p>
+                    <div class="client">
+                        <div class="avatar-sm">S</div>
+                        <div>
+                            <div class="name">Sophie L.</div>
+                            <div class="role">Fondatrice, GreenLeaf Cosmetics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p>"Une écoute parfaite et des résultats mesurables. Notre ROI a été multiplié par 3, et l'équipe est ravie de la nouvelle image de marque."</p>
+                    <div class="client">
+                        <div class="avatar-sm">M</div>
+                        <div>
+                            <div class="name">Marc D.</div>
+                            <div class="role">CEO, WiseFit App</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p>"Un professionnel hors pair ! La refonte de notre identité visuelle et la stratégie de contenu ont fait des merveilles sur nos réseaux."</p>
+                    <div class="client">
+                        <div class="avatar-sm">J</div>
+                        <div>
+                            <div class="name">Julien R.</div>
+                            <div class="role">Co-fondateur, Urban Eats</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 6 : CTA / CONTACT ===== -->
+        <section id="contact">
+            <div class="cta-box">
+                <span class="section-tag">Contact</span>
+                <h2>Prêt à donner un <span>nouvel élan</span> à votre marque ?</h2>
+                <p>Que vous soyez en recherche de freelance, d'un collaborateur créatif ou d'un consultant stratégique, je suis à votre écoute.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:contact@monportfolio.com" class="btn"><i class="fas fa-envelope"></i> contact@monportfolio.com</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-calendar-alt"></i> Planifier un call</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 — Mon Portfolio. Tous droits réservés. Créé avec <i class="fas fa-heart" style="color: var(--accent);"></i></p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Fermer le menu au clic sur un lien (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Smooth scroll pour les ancres (amélioration)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#") return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
